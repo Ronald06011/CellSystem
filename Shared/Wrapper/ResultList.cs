@@ -32,7 +32,16 @@ public class ResultList<T>:Result
         };
 
     }
+    public  static ResultList<T> Success()
+        {
 
+            return new ResultList<T>(){
+                Succeeded = true,
+                Message = new List<string>(){"✔"}
+               
+            };
+
+        }
  
     public  static ResultList<T> Success(IEnumerable<T> items,string message)
     {
