@@ -32,7 +32,7 @@ public class ResultList<T>:Result
         };
 
     }
-    public  static ResultList<T> Success()
+    public  static ResultList<T> Success(List<Records.UsuarioRolRecord> roles)
         {
 
             return new ResultList<T>(){
