@@ -32,7 +32,10 @@ public class Get : EndpointBaseAsync.WithoutRequest.WithActionResult<Repuesta>
             PermisoParaEditar = false,
             PermisoParaEliminar = false
         });
-
+        //Insert Into
+        dbContext.UsuariosRoles.Add(rol);
+        await dbContext.SaveChangesAsync(cancellationToken);
+        
         var roles =  await dbContext.UsuariosRoles
         .Select(rol=>rol.ToRecord())
         .ToListAsync(cancellationToken);
