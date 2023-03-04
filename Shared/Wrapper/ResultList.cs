@@ -32,6 +32,7 @@ public class ResultList<T>:Result
         };
 
     }
+   
     public  static ResultList<T> Success(IEnumerable<T> items)
         {
 
@@ -42,8 +43,6 @@ public class ResultList<T>:Result
             };
 
         }
-    
- 
     public  static ResultList<T> Success(IEnumerable<T> items,string message)
     {
 
