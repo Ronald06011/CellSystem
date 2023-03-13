@@ -8,7 +8,6 @@ using CellSystem.Shared.Routes;
 using CellSystem.Server.Models;
 
 namespace CellSystem.Server.Endpoints.UsuariosRoles;
-
 using Repuesta = ResultList<UsuarioRolRecord>;
 
 public class Get : EndpointBaseAsync.WithoutRequest.WithActionResult<Repuesta>
