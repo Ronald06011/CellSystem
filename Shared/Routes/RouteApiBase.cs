@@ -18,6 +18,9 @@ public class UsuarioRolRouteManager:RouteApiBase
 }
 public class UsuarioRouteManager:RouteApiBase
 {
-    public const string BASE = $"{API}/users";
+   
+    public const string BASE = $"{API}/users"; 
+   public const string GetById = $"{BASE}/{IdParameter}";// /api/roles/{Id:int}
+   public static string BuildRoute(int Id) => GetById.Replace(IdParameter,Id.ToString());
     
 }

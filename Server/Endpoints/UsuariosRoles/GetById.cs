@@ -5,12 +5,12 @@ using CellSystem.Shared.Wrapper;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using CellSystem.Shared.Routes;
-using CellSystem.Server.Models;
+
 
 namespace CellSystem.Server.Endpoints.UsuariosRoles;
-using Repuesta = Result<UsuarioRolRecord>;
+using Respuesta = Result<UsuarioRolRecord>;
 using Request = UsuarioRolRouteManager;
-public class GetById : EndpointBaseAsync.WithRequest<Request>.WithActionResult<Repuesta>
+public class GetById : EndpointBaseAsync.WithRequest<Request>.WithActionResult<Respuesta>
 {
     private readonly IMyDbContext dbContext;
     public GetById(IMyDbContext dbContext)
@@ -18,37 +18,27 @@ public class GetById : EndpointBaseAsync.WithRequest<Request>.WithActionResult<R
         this.dbContext = dbContext;
     }
     [HttpGet(UsuarioRolRouteManager.GetById)]
-    public override async Task<ActionResult<Repuesta>>HandleAsync([FromRoute]Request request,CancellationToken cancellationToken)
+      public override async Task<ActionResult<Respuesta>> HandleAsync([FromRoute] Request request,CancellationToken cancellationToken = default)
     {
-        try{
-        // var NumeroDeRolesExistentes = 
-        // await dbContext.UsuariosRoles.CountAsync() ;
-        // NumeroDeRolesExistentes++;
-
-        // var rol = UsuarioRol.Crear(new Shared.Requests.UsuarioRolCreateRequest(){
-        //     Nombre = NumeroDeRolesExistentes.ToString(),
-        //     PermisoParaCrear = true,
-        //     PermisoParaEditar = false,
-        //     PermisoParaEliminar = false
-        // });
-        //Insert Into
-        // dbContext.UsuariosRoles.Add(rol);
-        // await dbContext.SaveChangesAsync(cancellationToken);
-        
-        var rol=  await dbContext.UsuariosRoles
+       try
+       {
+        var rol = await dbContext.UsuariosRoles
         .Where(r=>r.Id == request.Id)
-        .Select(rol=>rol.ToRecord())
-        .FirstOrDefaultAsync(cancellationToken);
-       
-        if (rol==null)
-        return Repuesta.Fail($"No fue posible encontrar el rol'{request.Id}'");
-        return Repuesta.Success(rol);
-        }
-        catch(Exception ex){
-            return Repuesta.Fail(ex.Message);
-        }
+       .Select(rol=>rol.ToRecord())
+       .FirstOrDefaultAsync(cancellationToken);
+
+       if(rol==null)
+        return Respuesta.Fail($"No fue posible encontrar el rol '{request.Id}'");
+
+        return Respuesta.Success(rol);
+       }
+       catch(Exception ex)
+       {
+        return Respuesta.Fail(ex.Message);
+       }
+    }
         
     }
 
 
-}
+
