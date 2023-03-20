@@ -24,7 +24,7 @@
     <label for="ckbEliminar">Eliminar</label>
     <InputCheckbox id="ckbEliminar" @bind-Value="Rol.PermisoParaEliminar"></InputCheckbox>
     </div>
-    <button type="submit" class="mt-2 btn btn-success">Ok</button>
+    <button @onclick="Send" type="submit" class="mt-2 btn btn-success">Ok</button>
 </EditForm>
 @code
 {
@@ -51,12 +51,30 @@ protected override async Task OnInitializedAsync()
             }
 
         }
+
         
 public async void Send()
 {
-    var resultado = await rolesManager.CreateAsync(Rol);
-    if(resultado.Succeeded) urlHelper.NavigateTo("/roles");
+    @* if(Titulo == "Editar Rol")
+     {
+            var updateRequest = new UsuarioRolUpdateRequest
+    {
+        Id = Id,   
+                   /* Propiedades actualizadas del registro de rol */
+    };
 
+       var resultado = await rolesManager.UpdateAsync(Rol.Id, updateRequest);
+        
+        if(resultado.Succeeded) urlHelper.NavigateTo("/roles");
+     } *@
+      if(Titulo == "Crear Rol")
+     {
+        var resultado = await rolesManager.CreateAsync(Rol);
+        
+        if(resultado.Succeeded) urlHelper.NavigateTo("/roles");
+     }
+     
+     
 }
 
 
