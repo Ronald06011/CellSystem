@@ -11,6 +11,8 @@ public class Productos{
 
     public string Tipo { get; set; }= null!;
 
+    public int Cantidad{ get; set; }
+
     public int Precio { get; set; }
 
     public int valor { get; set; }
