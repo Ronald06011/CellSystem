@@ -1,6 +1,9 @@
+using System.ComponentModel.DataAnnotations;
+
 namespace  CellSystem.Server.Models;
 
 public class Productos{
+    [Key]
     public string Nombre{get; set;}= null!;
     public string Modelo { get; set; }= null!;
 
