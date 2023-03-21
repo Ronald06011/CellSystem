@@ -11,13 +11,20 @@ namespace CellSystem.Client.Manager;
 
 public interface IFacturarManager
 {
-    Task<ResultList<ClienteRecord>> GetAsync();
+    Task<ResultList<FacturarRecord>> GetAsync();
     Task<Result<int>> CreateAsync(ProductosCreateRequest request);
-    Task<Result<ClienteRecord>> GetByIdAsync(int Id);
+    Task<Result<FacturarRecord>> GetByIdAsync(int Id);
     // Task<Result> UpdateAsync(int usuarioRolId, UsuarioRolUpdateRequest request);
 }
 
-public class FacturarManager : IFacturarManager
+public interface IFacturarManager1
+{
+    Task<Result<int>> CreateAsync(ProductosCreateRequest request);
+    Task<ResultList<ProductosRecord>> GetAsync();
+    Task<Result<FacturarRecord>> GetByIdAsync(int Id);
+}
+
+public class FacturarManager : IFacturarManager1
 {
     private readonly HttpClient httpClient;
 
@@ -43,24 +50,24 @@ public class FacturarManager : IFacturarManager
     }
     public async Task<Result<int>> CreateAsync(ProductosCreateRequest request)
     {
-        var response = await httpClient.PostAsJsonAsync (ProductosRouteManager.BASE,request); 
+        var response = await httpClient.PostAsJsonAsync(ProductosRouteManager.BASE, request);
         return await response.ToResult<int>();
 
     }
-// public async Task<Result> UpdateAsync(int usuarioRolId, UsuarioRolUpdateRequest request)
-// {
-     
-//     var response = await httpClient.PutAsJsonAsync($"{ClienteRouteManager.BASE}/{usuarioRolId}", request);
-//     return await response.ToResult();
-// }
+    // public async Task<Result> UpdateAsync(int usuarioRolId, UsuarioRolUpdateRequest request)
+    // {
+
+    //     var response = await httpClient.PutAsJsonAsync($"{ClienteRouteManager.BASE}/{usuarioRolId}", request);
+    //     return await response.ToResult();
+    // }
 
 
 
-    
-  public async Task<Result<ClienteRecord>> GetByIdAsync(int Id)
+
+    public async Task<Result<FacturarRecord>> GetByIdAsync(int Id)
     {
-        var response = await httpClient.GetAsync (ProductosRouteManager.BuildRoute(Id)); 
-        return await response.ToResult<ClienteRecord>();
+        var response = await httpClient.GetAsync(ProductosRouteManager.BuildRoute(Id));
+        return await response.ToResult<FacturarRecord>();
 
     }
 
