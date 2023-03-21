@@ -1,3 +1,6 @@
+using System.Net.Cache;
+using CellSystem.Shared.Requests;
+using CellSystem.Shared.Records;
 using System.ComponentModel.DataAnnotations;
 using CellSystem.Shared.Records;
 using CellSystem.Shared.Requests;
@@ -10,6 +13,7 @@ public class Cliente
         public string Nombre {get; set;}= null!;
         public int Cedula{get; set;} 
         public int Telefono {get; set;}
+<<<<<<< HEAD
         public static Cliente Crear (ClienteCreateRequest request)
         {
                 return new Cliente(){
@@ -19,4 +23,7 @@ public class Cliente
 
                 };
         }
+=======
+
+>>>>>>> e911a4eed99da54e3f554133a286af06d1bf5d3e
 }

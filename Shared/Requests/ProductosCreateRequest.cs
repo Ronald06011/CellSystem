@@ -1,10 +1,12 @@
 using System.ComponentModel.DataAnnotations;
 
-namespace  CellSystem.Server.Models;
-
-public class Productos{
-    [Key]
+namespace CellSystem.Shared.Requests;
+ 
+ public class ProductosCreateRequest
+ {
+    [requiered (ErrorMessage="Debe Proporcionar un Nombre")]
     public string Nombre{get; set;}= null!;
+    
     public string Modelo { get; set; }= null!;
 
     public string Marca { get; set; } = null!;
@@ -16,6 +18,4 @@ public class Productos{
     public int Precio { get; set; }
 
     public int valor { get; set; }
-    
-    
-}
+ }
