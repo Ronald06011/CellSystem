@@ -1,0 +1,65 @@
+@page "/cliente/crear"
+@page "/cliente/editar/{Id:int}"
+
+
+<EditForm Model="@Cliente" OnInvalidSubmit="Send">
+   
+    <DataAnnotationsValidator/>
+    <ValidationSummary/>
+<label for="txtNombre">Nombre</label>
+<input @bind="Cliente.Nombre" type="text" name="txtNombre" id="txtNombre">
+<label for="txtDescripcion">Cedula</label>
+<input @bind="Cliente.cedula" type="number" name="txtDescripcion" id="txtDescripcion">
+<label for="txtPrecio">Telefono</label>
+<input @bind="Cliente.Telefono" type="number" name="txtPrecio" id="txtPrecio">
+<div class="mt-3"></div>
+<button @onclick="Send" type="submit" class="mt-2 btn btn-success">Ok</button>
+</EditForm>
+
+@code
+{
+    [Parameter]
+public int Id { get; set; } = 0;
+public string Titulo => Id>0? "Editar Rol":"Crear Rol";
+ public ClienteCreateRequest Cliente { get; set; } = new ClienteCreateRequest();
+ protected override async Task OnInitializedAsync()
+        {
+            
+            if(Id !=0)
+            {
+                var resultado = await clienteManager.GetByIdAsync(Id);
+                if(resultado.Succeeded){
+                  
+                    Cliente.Nombre = resultado.Data.Nombre;
+                    Cliente.cedula = resultado.Data.cedula;
+                    Cliente.Telefono = resultado.Data.Telefono;
+                  
+                    StateHasChanged();
+                }
+            }
+
+        }
+public async void Send()
+{
+    if(Titulo == "Editar Cliente")
+     {
+            var updateRequest = new UsuarioRolUpdateRequest
+    {
+        Id = Id,   
+                   /* Propiedades actualizadas del registro de rol */
+    };
+
+       @* var resultado = await clienteManager.UpdateAsync(Cliente.Nombre, updateRequest);
+        
+        if(resultado.Succeeded) urlHelper.NavigateTo("/cliente"); *@
+     }
+      if(Titulo == "Crear Cliente")
+     {
+        var resultado = await clienteManager.CreateAsync(Cliente);
+        
+        if(resultado.Succeeded) urlHelper.NavigateTo("/cliente");
+     }
+     
+     
+}
+}

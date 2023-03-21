@@ -4,15 +4,15 @@ using System.ComponentModel.DataAnnotations;
 
 namespace   CellSystem.Server.Models;
 
-public class facturar: Productos
+public class Facturar: Productos
 {
     public string pago { get; set; }=null!;
     public int Total { get; set; }
     public int Descuento { get; set; }
 
-      public static facturar Crear (FacturarCreateRequest request)
+      public static Facturar Crear (FacturarCreateRequest request)
         {
-                return new facturar(){
+                return new Facturar(){
                        
                        pago = request.pago,
                        Total=request.Total,
