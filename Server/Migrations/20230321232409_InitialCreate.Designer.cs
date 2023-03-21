@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CellSystem.Server.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20230218233137_InitialCreate")]
+    [Migration("20230321232409_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -23,6 +23,61 @@ namespace CellSystem.Server.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128);
 
             SqlServerModelBuilderExtensions.UseIdentityColumns(modelBuilder);
+
+            modelBuilder.Entity("CellSystem.Server.Models.Cliente", b =>
+                {
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Cedula")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Telefono")
+                        .HasColumnType("int");
+
+                    b.HasKey("Nombre");
+
+                    b.ToTable("Clientes");
+                });
+
+            modelBuilder.Entity("CellSystem.Server.Models.Productos", b =>
+                {
+                    b.Property<string>("Nombre")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<int>("Cantidad")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Discriminator")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Marca")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Modelo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("Precio")
+                        .HasColumnType("int");
+
+                    b.Property<string>("Tipo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("valor")
+                        .HasColumnType("int");
+
+                    b.HasKey("Nombre");
+
+                    b.ToTable("Producto");
+
+                    b.HasDiscriminator<string>("Discriminator").HasValue("Productos");
+
+                    b.UseTphMappingStrategy();
+                });
 
             modelBuilder.Entity("CellSystem.Server.Models.Usuario", b =>
                 {
@@ -78,6 +133,23 @@ namespace CellSystem.Server.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("UsuariosRoles");
+                });
+
+            modelBuilder.Entity("CellSystem.Server.Models.Facturar", b =>
+                {
+                    b.HasBaseType("CellSystem.Server.Models.Productos");
+
+                    b.Property<int>("Descuento")
+                        .HasColumnType("int");
+
+                    b.Property<int>("Total")
+                        .HasColumnType("int");
+
+                    b.Property<string>("pago")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasDiscriminator().HasValue("Facturar");
                 });
 
             modelBuilder.Entity("CellSystem.Server.Models.Usuario", b =>
