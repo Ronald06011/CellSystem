@@ -1,11 +1,22 @@
 using System.ComponentModel.DataAnnotations;
+using CellSystem.Shared.Records;
+using CellSystem.Shared.Requests;
 
 namespace CellSystem.Server.Models;
 
-public class Clientes
+public class Cliente
 {
-           [Key]
+        [Key]
         public string Nombre {get; set;}= null!;
-        public int cedula{get; set;} 
+        public int Cedula{get; set;} 
         public int Telefono {get; set;}
+        public static Cliente Crear (ClienteCreateRequest request)
+        {
+                return new Cliente(){
+                        Nombre =  request.Nombre,
+                        Cedula = request.cedula,
+                        Telefono = request.Telefono
+
+                };
+        }
 }
