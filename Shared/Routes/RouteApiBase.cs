@@ -33,3 +33,20 @@ public class ClienteRouteManager:RouteApiBase
    public static string BuildRoute(int Id) => GetById.Replace(IdParameter,Id.ToString());
     
 }
+public class ProductosRouteManager:RouteApiBase
+{
+   
+    public const string BASE = $"{API}/productos"; 
+   public const string GetById = $"{BASE}/{IdParameter}";// /api/roles/{Id:int}
+   public static string BuildRoute(int Id) => GetById.Replace(IdParameter,Id.ToString());
+    
+}
+
+public class FacturarRouteManager:RouteApiBase
+{
+   
+    public const string BASE = $"{API}/facturar"; 
+   public const string GetById = $"{BASE}/{IdParameter}";// /api/roles/{Id:int}
+   public static string BuildRoute(int Id) => GetById.Replace(IdParameter,Id.ToString());
+    
+}
