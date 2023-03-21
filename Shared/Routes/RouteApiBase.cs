@@ -24,3 +24,12 @@ public class UsuarioRouteManager:RouteApiBase
    public static string BuildRoute(int Id) => GetById.Replace(IdParameter,Id.ToString());
     
 }
+
+public class ClienteRouteManager:RouteApiBase
+{
+   
+    public const string BASE = $"{API}/cliente"; 
+   public const string GetById = $"{BASE}/{IdParameter}";// /api/roles/{Id:int}
+   public static string BuildRoute(int Id) => GetById.Replace(IdParameter,Id.ToString());
+    
+}
