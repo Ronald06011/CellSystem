@@ -30,5 +30,8 @@ public class Productos{
                 };
         }
     
-    
+     public ProductosRecord ToRecord() 
+    {
+      return new ProductosRecord(Nombre,Marca,Modelo,Tipo,Cantidad,Precio,valor);
+    }
 }
