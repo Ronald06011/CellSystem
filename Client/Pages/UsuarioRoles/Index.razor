@@ -9,7 +9,8 @@
     <table class="table">
     <thead>
         <tr>
-            <th>#</th>
+            
+            <th>Nombre</th>
             <th>Permiso Para Crear</th>
             <th>Permiso Para Editar</th>
             <th>Permiso Para Eliminar</th>
@@ -20,14 +21,15 @@
         @foreach (var rol in Roles)
         {
             <tr>
+                
                 <td>@rol.Nombre </td>
                 <td>@rol.PermisoParaCrear</td>
                 <td>@rol.PermisoParaEditar </td>
                 <td>@rol.PermisoParaEliminar</td>
                 <td><span class="btn btn-outline-warning" @onclick="()=>Editar(rol.Id)">Editar</span></td>
-                <td>
+               
                  
-                </td>
+          
             </tr>
         }
     </tbody>

@@ -7,8 +7,9 @@ public class ProductosRecord
     {
     }
 
-    public ProductosRecord(string nombre, string modelo, string marca, string tipo, int cantidad, int precio, int valor)
+    public ProductosRecord(int id,string nombre, string modelo, string marca, string tipo, int cantidad, int precio, int valor)
     {
+        this.Id = id;
         this.Nombre = nombre;
         this.Modelo = modelo;
         this.Marca = marca;
@@ -17,7 +18,7 @@ public class ProductosRecord
         this.Precio = precio;
         this.valor = valor;
     }
-
+    public int Id { get; set; }
     public string Nombre{get; set;}= null!;
     public string Modelo { get; set; }= null!;
 

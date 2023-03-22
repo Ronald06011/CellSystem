@@ -10,4 +10,6 @@ builder.RootComponents.Add<HeadOutlet>("head::after");
 builder.Services.AddScoped(sp => new HttpClient { BaseAddress = new Uri(builder.HostEnvironment.BaseAddress) });
 builder.Services.AddScoped<IUsuarioRolManager,UsuarioRolManager>();
 builder.Services.AddScoped<IClienteManager,ClienteManager>();
+builder.Services.AddScoped<IFacturarManager,FacturarManager>();
+builder.Services.AddScoped<IProductosManager,ProductosManager>();
 await builder.Build().RunAsync();

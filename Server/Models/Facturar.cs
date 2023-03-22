@@ -6,7 +6,7 @@ namespace   CellSystem.Server.Models;
 
 public class Facturar: Productos
 {
-    public string pago { get; set; }=null!;
+    public string Pago { get; set; }=null!;
     public int Total { get; set; }
     public int Descuento { get; set; }
 
@@ -14,13 +14,16 @@ public class Facturar: Productos
         {
                 return new Facturar(){
                        
-                       pago = request.pago,
+                       Pago = request.Pago,
                        Total=request.Total,
                        Descuento=request.Descuento
 
                 };
 
         }
-
+        public new FacturarRecord ToRecord()
+        {
+                return new FacturarRecord(Pago,Total,Descuento);
+        }
 }
 

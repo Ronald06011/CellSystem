@@ -9,11 +9,11 @@
 <table class="table">
     <thead>
         <tr>
-            <th>#</th>
+        
             <th>Nombre</th>
             <th>Cedula</th>
             <th>Telefono</th>
-            <th></th>
+      
         </tr>
     </thead>
     <tbody>
@@ -23,7 +23,7 @@
                 <td>@clientes.Nombre</td>
                 <td>@clientes.cedula</td>
                 <td>@clientes.Telefono</td>
-                <td><span class="btn btn-outline-warning" @onclick="()=>Editar(clientes.Nombre)">Editar</span></td>
+                <td><span class="btn btn-outline-warning" @onclick="()=>Editar(clientes.Id)">Editar</span></td>
             </tr>
         }
     </tbody>
@@ -50,9 +50,9 @@ else
         {
             urlHelper.NavigateTo("/cliente/crear",false);
         }
-          public void Editar(string Nombre)
+          public void Editar(int Id)
         {
-            urlHelper.NavigateTo($"/cliente/editar/{Nombre}",false);
+            urlHelper.NavigateTo($"/cliente/editar/{Id}",false);
         }
 
 }

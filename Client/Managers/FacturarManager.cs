@@ -9,22 +9,15 @@ using System.Net.Http.Json;
 
 namespace CellSystem.Client.Manager;
 
-public interface IFacturarManager
-{
-    Task<ResultList<FacturarRecord>> GetAsync();
-    Task<Result<int>> CreateAsync(ProductosCreateRequest request);
-    Task<Result<FacturarRecord>> GetByIdAsync(int Id);
-    // Task<Result> UpdateAsync(int usuarioRolId, UsuarioRolUpdateRequest request);
-}
 
-public interface IFacturarManager1
+public interface IFacturarManager
 {
     Task<Result<int>> CreateAsync(ProductosCreateRequest request);
     Task<ResultList<ProductosRecord>> GetAsync();
     Task<Result<FacturarRecord>> GetByIdAsync(int Id);
 }
 
-public class FacturarManager : IFacturarManager1
+public class FacturarManager : IFacturarManager
 {
     private readonly HttpClient httpClient;
 

@@ -13,12 +13,12 @@ public class ClienteRecord{
         this.cedula = cedula;
         this.Telefono = telefono;
     }
-    public int Id { get; set; }
+     public int Id { get; set; }
 
-         public string Nombre {get; set;}= null!;
+    public string Nombre {get; set;}= null!;
 
-        public int cedula{get; set;} 
+    public int cedula{get; set;} 
 
-        public int Telefono {get; set;}
+     public int Telefono {get; set;}
 
 }

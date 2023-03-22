@@ -5,6 +5,7 @@ namespace  CellSystem.Server.Models;
 
 public class Productos{
     [Key]
+    public int Id { get; set; }
     public string Nombre{get; set;}= null!;
     public string Modelo { get; set; }= null!;
 
@@ -20,6 +21,7 @@ public class Productos{
      public static Productos Crear (ProductosCreateRequest request)
         {
                 return new Productos(){
+                        Id = request.Id,
                         Nombre =  request.Nombre,
                         Modelo=request.Modelo,
                         Marca = request.Marca,
@@ -32,6 +34,6 @@ public class Productos{
     
      public ProductosRecord ToRecord() 
     {
-      return new ProductosRecord(Nombre,Marca,Modelo,Tipo,Cantidad,Precio,valor);
+      return new ProductosRecord(Id,Nombre,Marca,Modelo,Tipo,Cantidad,Precio,valor);
     }
 }

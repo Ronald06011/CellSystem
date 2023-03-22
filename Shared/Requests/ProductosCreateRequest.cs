@@ -4,6 +4,7 @@ namespace CellSystem.Shared.Requests;
  
  public class ProductosCreateRequest
  {
+   public int Id { get; set; }
     [Required (ErrorMessage="Debe Proporcionar un Nombre")]
     public string Nombre{get; set;}= null!;
     
