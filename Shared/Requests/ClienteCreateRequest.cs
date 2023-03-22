@@ -8,6 +8,7 @@ public class ClienteCreateRequest
         [Required (ErrorMessage="Proporcione un Nombre")]
 
         public string Nombre {get; set;}= null!;
+        [Required(ErrorMessage ="Debe Escribir una cedula"+"40213790617")]
         public int cedula{get; set;} 
         public int Telefono {get; set;}  
 }
