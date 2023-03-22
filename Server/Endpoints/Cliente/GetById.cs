@@ -28,7 +28,7 @@ public class GetById : EndpointBaseAsync.WithRequest<Request>.WithActionResult<R
        .FirstOrDefaultAsync(cancellationToken);
 
        if(clientes==null)
-        return Respuesta.Fail($"No fue posible encontrar el rol '{request.Id}'");
+        return Respuesta.Fail($"No fue posible encontrar el Cliente '{request.Id}'");
 
         return Respuesta.Success(clientes);
        }
