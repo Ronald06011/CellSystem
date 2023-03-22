@@ -6,12 +6,14 @@ public class ClienteRecord{
     {
     }
 
-    public ClienteRecord(string nombre , int cedula, int telefono )
+    public ClienteRecord(int id,string nombre , int cedula, int telefono )
     {
+        this.Id = id;
         this.Nombre = nombre;
         this.cedula = cedula;
         this.Telefono = telefono;
     }
+    public int Id { get; set; }
 
          public string Nombre {get; set;}= null!;
 

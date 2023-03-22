@@ -14,13 +14,15 @@ namespace CellSystem.Server.Migrations
                 name: "Clientes",
                 columns: table => new
                 {
-                    Nombre = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    Id = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Nombre = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     Cedula = table.Column<int>(type: "int", nullable: false),
                     Telefono = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Clientes", x => x.Nombre);
+                    table.PrimaryKey("PK_Clientes", x => x.Id);
                 });
 
             migrationBuilder.CreateTable(

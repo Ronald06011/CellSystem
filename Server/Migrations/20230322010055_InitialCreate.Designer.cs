@@ -11,7 +11,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace CellSystem.Server.Migrations
 {
     [DbContext(typeof(MyDbContext))]
-    [Migration("20230321232409_InitialCreate")]
+    [Migration("20230322010055_InitialCreate")]
     partial class InitialCreate
     {
         /// <inheritdoc />
@@ -26,16 +26,23 @@ namespace CellSystem.Server.Migrations
 
             modelBuilder.Entity("CellSystem.Server.Models.Cliente", b =>
                 {
-                    b.Property<string>("Nombre")
-                        .HasColumnType("nvarchar(450)");
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int");
+
+                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
                     b.Property<int>("Cedula")
                         .HasColumnType("int");
 
+                    b.Property<string>("Nombre")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Telefono")
                         .HasColumnType("int");
 
-                    b.HasKey("Nombre");
+                    b.HasKey("Id");
 
                     b.ToTable("Clientes");
                 });
